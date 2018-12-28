@@ -1,1 +1,1 @@
-sudo docker-compose up --scale web=3
+docker-compose up --scale web=3

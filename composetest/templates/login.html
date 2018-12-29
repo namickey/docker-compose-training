@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>login</title>
+  <style type="text/css">
+    button.hidden {display: none;}
+  </style>
+</head>
+<body>
+  <p id="uid"><img src="./static/loading.gif" width="22" height="22"> Loading...</p>
+  <button id="login" class="hidden">login</button>
+  <button id="logout" class="hidden">logout</button>
+<script src="./static/key.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-auth.js"></script>
+<script>
+  firebase.initializeApp(config)
+  const auth = firebase.auth()
+  const login = document.getElementById('login')
+  const logout = document.getElementById('logout')
+  login.addEventListener('click', () => auth.signInAnonymously())
+  logout.addEventListener('click', () => auth.signOut())
+
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      login.classList.add('hidden')
+      logout.classList.remove('hidden')
+      uid.textContent = `${user.uid}でログイン中`
+    } else {
+      login.classList.remove('hidden')
+      logout.classList.add('hidden')
+      uid.textContent = 'ログアウト中'
+    }
+  })
+</script>
+</body>
+</html>

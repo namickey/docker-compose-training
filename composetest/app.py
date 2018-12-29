@@ -1,10 +1,14 @@
 import time
 import redis
-from flask import Flask, session
+from flask import Flask, session, render_template
 import uuid
 
 app = Flask(__name__)
 cache = redis.Redis(host='redis', port=6379)
+
+@app.route('/')
+def index():
+    return render_template('login.html')
 
 def get_hit_count():
     retries = 5
@@ -18,7 +22,7 @@ def get_hit_count():
             time.sleep(0.5)
 
 
-@app.route('/')
+@app.route('/c')
 def hello():
     count = get_hit_count()
     name = 'none'

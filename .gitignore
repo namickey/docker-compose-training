@@ -1,3 +1,4 @@
 composetest/__pycache__/
-key.js
 *.pyc
+accountkey.json
+key.js

@@ -10,9 +10,10 @@
   <p id="uid"><img src="./static/loading.gif" width="22" height="22"> Loading...</p>
   <button id="login" class="hidden">login</button>
   <button id="logout" class="hidden">logout</button>
-<script src="./static/key.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-auth.js"></script>
+
+<script src="/__/firebase/5.7.2/firebase-app.js"></script>
+<script src="/__/firebase/5.7.2/firebase-auth.js"></script>
+<script src="/__/firebase/init.js"></script>
 <script>
   firebase.initializeApp(config)
   const auth = firebase.auth()

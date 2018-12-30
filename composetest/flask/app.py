@@ -1,7 +1,12 @@
 import time
 import redis
-from flask import Flask, session, render_template
 import uuid
+import firebase_admin
+from firebase_admin import credentials
+from flask import Flask, session, render_template
+
+cred = credentials.Certificate('./firebase/accountkey.json')
+default_app = firebase_admin.initialize_app(cred)
 
 app = Flask(__name__)
 cache = redis.Redis(host='redis', port=6379)

@@ -2,11 +2,11 @@ version: '3'
 services:
   web:
     build: .
-    ports:
-     - "5001-5003:5000"
+    expose:
+     - "5000"
     volumes:
-     - .:/code
-    command: flask run --host 0.0.0.0
+     - ./flask:/code
+    command: "flask run --host 0.0.0.0"
   redis:
     image: "redis:alpine"
   ngin:

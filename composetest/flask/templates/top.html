@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>login</title>
+  <title>top</title>
   <style type="text/css">
     button.hidden {display: none;}
   </style>
 </head>
 <body>
   <p id="uid"><img src="./static/loading.gif" width="22" height="22"> Loading...</p>
-  <p>
-    <form name="loginform" action="login" method="post">
-      <input type="text" id="username" name="username" value="" />
-      <input type="hidden" id="token" name="token" value="" />
-    </form>
-  </p>
   <button id="login" class="hidden">login</button>
   <button id="logout" class="hidden">logout</button>
 
@@ -32,11 +26,6 @@
       login.classList.add('hidden')
       logout.classList.remove('hidden')
       uid.textContent = `${user.uid}でログイン中`
-
-      firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-        document.getElementById('token').value = idToken
-        document.loginform.submit()
-      });
     } else {
       login.classList.remove('hidden')
       logout.classList.add('hidden')

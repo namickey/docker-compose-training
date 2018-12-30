@@ -3,17 +3,33 @@ import redis
 import uuid
 import firebase_admin
 from firebase_admin import credentials
-from flask import Flask, session, render_template
+from flask import Flask, session, render_template, request, redirect, url_for
 
+# firebase auth
 cred = credentials.Certificate('./firebase/accountkey.json')
 default_app = firebase_admin.initialize_app(cred)
 
+# flask
 app = Flask(__name__)
+# redis
 cache = redis.Redis(host='redis', port=6379)
 
-@app.route('/')
+# login page using firebase auth.
+@app.route('/', methods=['GET'])
 def index():
     return render_template('login.html')
+
+# login and auth token validation.
+@app.route('/login', methods=['POST'])
+def login():
+    app.logger.info(request.form['username'])
+    app.logger.info(request.form['token'])
+    return redirect(url_for('top'))
+
+# top
+@app.route('/top', methods=['GET'])
+def top():
+    return render_template('top.html')
 
 def get_hit_count():
     retries = 5
@@ -48,6 +64,7 @@ def genUuid():
     cache.hset(id, 'name', name)
     return name
 
+# session
 app.secret_key = 'abcd'
 
 if __name__ == "__main__":

@@ -25,8 +25,9 @@
       <h1>ログイン</h1>
       <p>選んでください</p>
       <p id="uid"><img src="./static/loading.gif" width="22" height="22"> Loading...</p>
-      <button id="login">AA</button>
-      <button id="login">BB</button>
+      <button id="login">AAあ</button>
+      <button id="login">BBい</button>
+      <button id="login">CCう</button>
     </div>
     <button id="logout">logout</button>
 
@@ -42,7 +43,7 @@
             auth.signInAnonymously().then(function(){
               var user = firebase.auth().currentUser;
               user.updateProfile({
-                displayName: "AA",
+                displayName: btn.innerText,
               }).then(function(){
                 uid.textContent = `${firebase.auth().currentUser.displayName}でログイン中`
               }).catch(function(error) {

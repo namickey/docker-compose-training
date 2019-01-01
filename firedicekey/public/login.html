@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>index</title>
+    <title>login</title>
     <style media="screen">
       body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
       #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
@@ -25,8 +25,9 @@
       <h1>ログイン</h1>
       <p>選んでください</p>
       <p id="uid"><img src="./static/loading.gif" width="22" height="22"> Loading...</p>
-      <button id="login">AA</button>
-      <button id="login">BB</button>
+      <button id="login">AAあ</button>
+      <button id="login">BBい</button>
+      <button id="login">CCう</button>
     </div>
     <button id="logout">logout</button>
 
@@ -36,14 +37,17 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const auth = firebase.auth()
+        //ログアウト設定 TODO 削除
         document.getElementById('logout').addEventListener('click', () => auth.signOut())
+        //ログイン設定
         Array.from(document.querySelectorAll("#message button"), btn => {
           btn.addEventListener('click', () => {
             auth.signInAnonymously().then(function(){
               var user = firebase.auth().currentUser;
               user.updateProfile({
-                displayName: "AA",
+                displayName: btn.innerText,
               }).then(function(){
+                //TODO indexへ遷移
                 uid.textContent = `${firebase.auth().currentUser.displayName}でログイン中`
               }).catch(function(error) {
                 console.log(error)
@@ -55,8 +59,10 @@
         auth.onAuthStateChanged(user => {
           if (user) {
             if (user.displayName){
+              //既にログイン済みの場合、indexへ遷移
               uid.textContent = `${user.displayName}でログイン中`
             }
+            //
             firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
               console.log(idToken)
               console.log(getUrlVars())

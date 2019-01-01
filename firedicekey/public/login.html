@@ -21,15 +21,14 @@
   </head>
   <body>
     <div id="message">
-      <h2>メール</h2>
+      <h2>メールlogin</h2>
       <h1>ログイン</h1>
       <p>選んでください</p>
-      <p id="uid"><img src="./static/loading.gif" width="22" height="22"> Loading...</p>
-      <button id="login">AAあ</button>
-      <button id="login">BBい</button>
-      <button id="login">CCう</button>
+      <p id="uid"><img src="/img/loading.gif" width="22" height="22"> Loading...</p>
+      <button type="button" id="login">AAあ</button>
+      <button type="button" id="login">BBい</button>
+      <button type="button" id="login">CCう</button>
     </div>
-    <button id="logout">logout</button>
 
     <script defer src="/__/firebase/5.7.2/firebase-app.js"></script>
     <script defer src="/__/firebase/5.7.2/firebase-auth.js"></script>
@@ -37,8 +36,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const auth = firebase.auth()
-        //ログアウト設定 TODO 削除
-        document.getElementById('logout').addEventListener('click', () => auth.signOut())
+
         //ログイン設定
         Array.from(document.querySelectorAll("#message button"), btn => {
           btn.addEventListener('click', () => {
@@ -47,8 +45,8 @@
               user.updateProfile({
                 displayName: btn.innerText,
               }).then(function(){
-                //TODO indexへ遷移
-                uid.textContent = `${firebase.auth().currentUser.displayName}でログイン中`
+                //表示名を設定して、indexへ遷移
+                window.location.href = "/"
               }).catch(function(error) {
                 console.log(error)
               })
@@ -58,18 +56,12 @@
 
         auth.onAuthStateChanged(user => {
           if (user) {
-            if (user.displayName){
+            if (user.displayName) {
               //既にログイン済みの場合、indexへ遷移
-              uid.textContent = `${user.displayName}でログイン中`
+              window.location.href = "/"
             }
-            //
-            firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-              console.log(idToken)
-              console.log(getUrlVars())
-            });
-          } else {
-            uid.textContent = 'ログアウト中'
           }
+          document.getElementById('uid').textContent = ""
         })
       });
       var getUrlVars = function(){

@@ -6,7 +6,7 @@ services:
      - "5000"
     volumes:
      - ./flask:/code
-    command: "flask run --host 0.0.0.0"
+    command: "python -m flask run --host 0.0.0.0 --debugger --reload"
   redis:
     image: "redis:alpine"
   ngin:

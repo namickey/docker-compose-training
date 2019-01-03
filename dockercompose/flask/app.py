@@ -17,7 +17,6 @@ app = Flask(__name__)
 r = redis.Redis(host='redis', port=6379)
 talkname = 'listsabcdezy'
 
-
 JST = timezone(timedelta(hours=+9), 'JST')
 
 @app.route('/talk', methods=['POST'])

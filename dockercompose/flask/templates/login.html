@@ -5,12 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>login</title>
     <style media="screen">
+      /* アイコン画像 */
+      button figure {
+          width: 50px;
+          //position: absolute;
+          top: 15px;
+          left: 0;
+          padding: 0;
+          margin: 0;
+
+      }
+
+      /* 正方形を用意 */
+      button figure img{
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+      }
       body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message { background: #7494c0; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
       #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
       #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
       #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message button { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      //#message button { display: block; text-align: center; background: white; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
       #message, #message button { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
       #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
       @media (max-width: 600px) {
@@ -21,19 +38,31 @@
   </head>
   <body>
     <div id="message">
-      <h2>メールlogin</h2>
-      <h1>ログイン</h1>
       <p>選んでください</p>
-      <button type="button" id="login" onclick="login(this)">さち</button>
-      <button type="button" id="login" onclick="login(this)">パパ</button>
-      <button type="button" id="login" onclick="login(this)">ママ</button>
+      <button type="button" id="login" onclick="login(this)"><figure><img src="./static/stamp/102.png" /></figure>さち</button>
+      <button type="button" id="login" onclick="login(this)"><figure><img src="./static/stamp/101.png" /></figure>パパ</button>
+      <button type="button" id="login" onclick="login(this)"><figure><img src="./static/stamp/103.png" /></figure>ママ</button>
+      <br><br>
+      <button type="button" id="login" onclick="login(this)"><figure><img src="./static/stamp/104.png" /></figure>わか</button>
+      <button type="button" id="login" onclick="login(this)"><figure><img src="./static/stamp/105.png" /></figure>じじ</button>
+      <button type="button" id="login" onclick="login(this)"><figure><img src="./static/stamp/106.png" /></figure>ばば</button>
+      <br><br>
+      <button type="button" id="login" onclick="login(this)"><figure><img src="./static/stamp/107.png" /></figure>ひま</button>
+      <button type="button" id="login" onclick="login(this)"><figure><img src="./static/stamp/108.png" /></figure>あつ</button>
+      <button type="button" id="login" onclick="login(this)"><figure><img src="./static/stamp/109.png" /></figure>あゆ</button>
+      <br><br>
+      <button type="button" id="login" onclick="login(this)"><figure><img src="./static/stamp/110.png" /></figure>こう</button>
       <form name="loginform" action="login" method="post">
         <input type="hidden" id="username" name="username" value="" />
+        <input type="hidden" id="stamp" name="stamp" value="" />
       </form>
+      <p>アクセス制限はしていません。</p>
+      <p>データも保存していません。そのうち消えます。</p>
     </div>
     <script>
       var login = function(button){
         document.getElementById('username').value = button.innerText;
+        document.getElementById('stamp').value = button.querySelector("figure img").src;
         document.loginform.submit();
       }
     </script>

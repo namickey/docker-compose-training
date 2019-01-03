@@ -1,0 +1,87 @@
+/* リセット */
+
+{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+input, button
+{
+  margin: 0;
+  color: inherit;
+  vertical-align: baseline;
+  font: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  outline: 0;
+}
+input
+{
+  line-height: normal;
+}
+input:focus
+{
+  outline: none;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-ms-clear,
+input::-ms-reveal
+{
+  display: none;
+}
+input::-moz-focus-inner
+{
+  padding: 0;
+  border: 0;
+}
+button
+{
+  text-transform: none;
+  overflow: visible;
+  cursor: pointer;
+}
+button::-moz-focus-inner
+{
+  padding: 0;
+  border: 0;
+}
+
+.fluid-input
+{
+  display: table;
+  width: 100%;
+}
+.fluid-input > *
+{
+  display: table-cell;
+  vertical-align: middle;
+}
+.label, .button
+{
+  width: 1%;
+  white-space: nowrap;
+}
+.label, .box, .button > button
+{
+  padding: .8em 1.1em;
+  line-height: 1.5;
+}
+.label
+{
+  color: #606468;
+  background-color: #363b41;
+}
+.box
+{
+  width: 100%;
+  background-color: #ffffff;
+}
+.button > button
+{
+  color: #fff;
+  background-color: #ea4c88;
+}

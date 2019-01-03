@@ -1,6 +1,7 @@
 import time
 import redis
 import uuid
+import datetime
 import firebase_admin
 from firebase_admin import credentials
 from flask import Flask, session, render_template, request, redirect, url_for
@@ -13,43 +14,52 @@ if not len(firebase_admin._apps):
 # flask
 app = Flask(__name__)
 # redis
-cache = redis.Redis(host='redis', port=6379)
+r = redis.Redis(host='redis', port=6379)
+talkname = 'listsabcdez'
 
 @app.route('/talk', methods=['POST'])
 def talk():
+    if request.form['content']:
+        r.lpush(talkname, str(session['user'])+request.form['content'])
     return redirect(url_for('index'))
-
 
 @app.route('/', methods=['GET'])
 def index():
     name = 'none'
     if 'user' in session:
-        name = cache.hget(str(session['user']), 'name')
+        name = r.hget(str(session['user']), 'name')
         if name:
             name = name.decode()
-            app.logger.error('info:' + name)
-            return render_template('index.html', username=name, talk='hoge')
+            talks = []
+            for x in r.lrange(talkname, 0, r.llen(talkname)):
+                dic = {}
+                dic['name'] = r.hget(x.decode()[:36], 'name').decode()
+                dic['stamp'] = r.hget(x.decode()[:36], 'stamp').decode()
+                dic['time'] = r.hget(x.decode()[:36], 'time').decode()
+                dic['talk'] = x.decode()[36:]
+                talks.append(dic)
+            talks.reverse()
+            return render_template('index.html', username=name, talks=talks)
     return render_template('login.html')
-
 
 @app.route('/login.html', methods=['GET'])
 def loginhtml():
     if 'user' in session:
-        name = cache.hget(str(session['user']), 'name')
-        if name:
-            return redirect(url_for('index'))
+        return redirect(url_for('index'))
     return render_template('login.html')
 
 # login and auth token validation.
 @app.route('/login', methods=['POST'])
 def login():
-    genUuid(request.form['username'])
+    genUuid(request.form['username'], request.form['stamp'])
     return redirect(url_for('index'))
 
-def genUuid(username=None):
+def genUuid(username=None, stamp=None):
     id = str(uuid.uuid4())
     session['user'] = id
-    cache.hset(id, 'name', username)
+    r.hset(id, 'name', username)
+    r.hset(id, 'stamp', stamp)
+    r.hset(id, 'time', datetime.datetime.now().strftime("%m/%d %H:%M"))
 
 @app.route('/logout')
 def logout():

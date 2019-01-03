@@ -24,20 +24,18 @@
       <h2>メールlogin</h2>
       <h1>ログイン</h1>
       <p>選んでください</p>
-      <button type="button" id="login">さち</button>
-      <button type="button" id="login">パパ</button>
-      <button type="button" id="login">ママ</button>
+      <button type="button" id="login" onclick="login(this)">さち</button>
+      <button type="button" id="login" onclick="login(this)">パパ</button>
+      <button type="button" id="login" onclick="login(this)">ママ</button>
     </div>
     <form name="loginform" action="login" method="post">
       <input type="text" id="username" name="username" value="" />
     </form>
     <script>
-      Array.from(document.querySelectorAll("#message button"), btn => {
-        btn.addEventListener('click', () => {
-          document.getElementById('username').value = btn.innerText
-          document.loginform.submit()
-        })
-      })
+      function login(this){
+        document.getElementById('username').value = this.innerText
+        document.loginform.submit()
+      }
     </script>
   </body>
 </html>

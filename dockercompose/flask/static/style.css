@@ -5,7 +5,9 @@ html {
     height: 100%;
 }
 
-
+{
+  -webkit-appearance: none;
+}
 ul.topnav {
 	overflow: hidden;
 	margin: 0;
@@ -39,6 +41,7 @@ ul.topnav li.right {
 
 .line__container {
   padding:0;
+  margin: 0;
   background: #7494c0;
   max-width: 500px;
   font-size: 80%;

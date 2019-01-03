@@ -47,6 +47,7 @@ ul.topnav li.right {
 .line__container .line__title {
   background: #273246;
   padding: 0px;
+  overflow: hidden;
   text-align: center;
   font-size: 150%;
   color: #ffffff;
@@ -60,7 +61,7 @@ ul.topnav li.right {
 }
 
 .line__container .scroll {
-  height: 500px;
+  height: 300px;
   overflow-y: scroll;
 }
 

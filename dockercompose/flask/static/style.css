@@ -2,13 +2,7 @@
 //LINE風チャット画面(会話方式)を記事に表示する方法
 /////////////////////////////////////////////////*/
 
-.line__container {
-  padding:0;
-  background: #7494c0;
-  overflow: hidden;
-  max-width: 400px;
-  font-size: 80%;
-}
+
 
 ul.topnav {
 	overflow: hidden;
@@ -39,6 +33,15 @@ ul.topnav li a.active {
 ul.topnav li.right {
 	float: right;
 }
+
+.line__container {
+  padding:0;
+  background: #7494c0;
+  overflow: hidden;
+  max-width: 500px;
+  font-size: 80%;
+}
+
 /* タイトル部分 */
 .line__container .line__title {
   background: #273246;

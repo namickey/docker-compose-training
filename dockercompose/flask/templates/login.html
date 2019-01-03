@@ -32,12 +32,10 @@
       <input type="text" id="username" name="username" value="" />
     </form>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        Array.from(document.querySelectorAll("#message button"), btn => {
-          btn.addEventListener('click', () => {
-            document.getElementById('username').value = btn.innerText
-            document.loginform.submit()
-          })
+      Array.from(document.querySelectorAll("#message button"), btn => {
+        btn.addEventListener('click', () => {
+          document.getElementById('username').value = btn.innerText
+          document.loginform.submit()
         })
       })
     </script>

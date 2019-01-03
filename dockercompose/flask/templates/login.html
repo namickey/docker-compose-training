@@ -24,15 +24,15 @@
       <h2>メールlogin</h2>
       <h1>ログイン</h1>
       <p>選んでください</p>
-      <button type="button" id="login" onclick="mylogin(this)">さち</button>
-      <button type="button" id="login" onclick="mylogin(this)">パパ</button>
-      <button type="button" id="login" onclick="mylogin(this)">ママ</button>
+      <button type="button" id="login" onclick="login(this)">さち</button>
+      <button type="button" id="login" onclick="login(this)">パパ</button>
+      <button type="button" id="login" onclick="login(this)">ママ</button>
+      <form name="loginform" action="login" method="post">
+        <input type="hidden" id="username" name="username" value="" />
+      </form>
     </div>
-    <form name="loginform" action="login" method="post">
-      <input type="text" id="username" name="username" value="" />
-    </form>
     <script>
-      var mylogin = function(button){
+      var login = function(button){
         document.getElementById('username').value = button.innerText;
         document.loginform.submit();
       }

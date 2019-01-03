@@ -23,16 +23,20 @@
     <div id="message">
       <h2>メールindex</h2>
       <p>{{username}}でログイン中</p>
-      <input type="text" name="content" />
-      <button type="button" id="send">送信</button>
-      <button type="button" id="logout">logout</button>
+      <p>{{talk}}</p>
+      <form name="sendform" action="talk" method="post">
+        <input type="text" name="content" />
+        <button type="button" onclick="talk()">送信</button>
+        <button type="button" onclick="logout()">logout</button>
+      </form>
     </div>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('logout').addEventListener('click', () => {
-          window.location.href = "/logout"
-        })
-      })
+      var talk = function(){
+        document.sendform.submit();
+      };
+      var logout = function(button){
+        window.location.href = "/logout";
+      };
     </script>
   </body>
 </html>

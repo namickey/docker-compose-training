@@ -15,6 +15,11 @@ app = Flask(__name__)
 # redis
 cache = redis.Redis(host='redis', port=6379)
 
+@app.route('/talk', methods=['POST'])
+def talk():
+    return redirect(url_for('index'))
+
+
 @app.route('/', methods=['GET'])
 def index():
     name = 'none'
@@ -23,8 +28,9 @@ def index():
         if name:
             name = name.decode()
             app.logger.error('info:' + name)
-            return render_template('index.html', username=name)
+            return render_template('index.html', username=name, talk='hoge')
     return render_template('login.html')
+
 
 @app.route('/login.html', methods=['GET'])
 def loginhtml():

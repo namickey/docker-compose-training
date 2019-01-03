@@ -1,4 +1,8 @@
 /* リセット */
+#wrapper {
+  width:100%;
+  overflow:hidden;
+}
 
 {
   -webkit-box-sizing: border-box;

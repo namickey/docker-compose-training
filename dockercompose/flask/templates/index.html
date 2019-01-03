@@ -50,14 +50,14 @@
     </div>
     <!--　▲LINE風ここまで -->
     <form name="sendform" action="talk" method="post">
-    <div class="fluid-input">
+    <div class="fluid-input" style="max-width: 500px;">
       <input class="box" type="text" name="content">
       <div class="button">
         <button type="button" onclick="talk()">送信・更新</button>
       </div>
     </div>
     </form>
-    
+
     <script>
       var talk = function(){
         document.sendform.submit();

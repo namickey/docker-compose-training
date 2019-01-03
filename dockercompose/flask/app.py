@@ -1,7 +1,7 @@
 import time
 import redis
 import uuid
-import datetime
+from datetime import datetime, timedelta, timezone
 import firebase_admin
 from firebase_admin import credentials
 from flask import Flask, session, render_template, request, redirect, url_for
@@ -15,12 +15,14 @@ if not len(firebase_admin._apps):
 app = Flask(__name__)
 # redis
 r = redis.Redis(host='redis', port=6379)
-talkname = 'listsabcdez'
+talkname = 'listsabcdezy'
+
+JST = timezone(timedelta(hours=+9), 'JST')
 
 @app.route('/talk', methods=['POST'])
 def talk():
     if request.form['content']:
-        r.lpush(talkname, str(session['user'])+request.form['content'])
+        r.lpush(talkname, str(session['user']) + '|' + datetime.now(JST).strftime("%m/%d %H:%M") + '|' + request.form['content'])
     return redirect(url_for('index'))
 
 @app.route('/', methods=['GET'])
@@ -32,11 +34,12 @@ def index():
             name = name.decode()
             talks = []
             for x in r.lrange(talkname, 0, r.llen(talkname)):
+                talkarray = x.decode().split('|')
                 dic = {}
-                dic['name'] = r.hget(x.decode()[:36], 'name').decode()
-                dic['stamp'] = r.hget(x.decode()[:36], 'stamp').decode()
-                dic['time'] = r.hget(x.decode()[:36], 'time').decode()
-                dic['talk'] = x.decode()[36:]
+                dic['name'] = r.hget(talkarray[0], 'name').decode()
+                dic['stamp'] = r.hget(talkarray[0], 'stamp').decode()
+                dic['time'] = talkarray[1]
+                dic['talk'] = talkarray[2]
                 talks.append(dic)
             talks.reverse()
             return render_template('index.html', username=name, talks=talks)
@@ -59,7 +62,6 @@ def genUuid(username=None, stamp=None):
     session['user'] = id
     r.hset(id, 'name', username)
     r.hset(id, 'stamp', stamp)
-    r.hset(id, 'time', datetime.datetime.now().strftime("%m/%d %H:%M"))
 
 @app.route('/logout')
 def logout():

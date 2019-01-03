@@ -2,6 +2,7 @@ import time
 import redis
 import uuid
 from datetime import datetime, timedelta, timezone
+import logging
 import firebase_admin
 from firebase_admin import credentials
 from flask import Flask, session, render_template, request, redirect, url_for
@@ -10,14 +11,16 @@ from flask import Flask, session, render_template, request, redirect, url_for
 if not len(firebase_admin._apps):
     cred = credentials.Certificate('./firebase/accountkey.json')
     default_app = firebase_admin.initialize_app(cred)
-
-# flask
-app = Flask(__name__)
 # redis
 r = redis.Redis(host='redis', port=6379)
-talkname = 'listsabcdezy'
 
 JST = timezone(timedelta(hours=+9), 'JST')
+talkname = 'listsabcdezy'
+
+# flask
+logger = logging.getLogger()
+logger.addHandler(logging.FileHandler("./log/app.log"))
+app = Flask(__name__)
 
 @app.route('/talk', methods=['POST'])
 def talk():

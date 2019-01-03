@@ -1,7 +1,9 @@
 /*/////////////////////////////////////////////////
 //LINE風チャット画面(会話方式)を記事に表示する方法
 /////////////////////////////////////////////////*/
-
+html {
+    height: 100%;
+}
 
 
 ul.topnav {
@@ -38,7 +40,6 @@ ul.topnav li.right {
 .line__container {
   padding:0;
   background: #7494c0;
-  overflow: hidden;
   max-width: 500px;
   font-size: 80%;
 }
@@ -47,7 +48,6 @@ ul.topnav li.right {
 .line__container .line__title {
   background: #273246;
   padding: 0px;
-  overflow: hidden;
   text-align: center;
   font-size: 150%;
   color: #ffffff;
@@ -56,12 +56,11 @@ ul.topnav li.right {
 /* 会話部分 */
 .line__container .line__contents {
   padding: 0px;
-  overflow: hidden;
   line-height: 100%;
 }
 
 .line__container .scroll {
-  height: 600px;
+  height: 500px;
   overflow-y: scroll;
 }
 

@@ -3,3 +3,5 @@ __pycache__/
 accountkey.json
 key.js
 app.log
+gcp/env/
+gcp/flask/lib/

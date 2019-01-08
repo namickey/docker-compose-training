@@ -14,7 +14,7 @@
 
 # [START app]
 import logging
-
+from google.appengine.api import memcache
 # [START imports]
 from flask import Flask, render_template, request
 # [END imports]
@@ -23,10 +23,14 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 # [END create_app]
 
-
 # [START form]
 @app.route('/form')
 def form():
+    a = memcache.get('key')
+    if a is not None:
+        print a
+    else:
+        memcache.add('key', 'aiueo', 10)
     return render_template('form.html')
 # [END form]
 

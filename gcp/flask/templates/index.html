@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>index</title>
+    <link rel='stylesheet' href='./static/style.css?3' type='text/css' media='all' />
+    <link rel='stylesheet' href='./static/input.css' type='text/css' media='all' />
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      .mytalk {text-align: right;}
+      .otherstalk {text-align: left;}
+    </style>
+  </head>
+  <body>
+<div id="wrapper">
+    <!-- タイトル -->
+    <ul class="topnav">
+      <li><a href="/logout" class="active">退場</a></li>
+      <li style="width: 50%; text-align: center;"><a href="/" >さちメール</a></li>
+    </ul>
+    <!-- ▼LINE風ここから -->
+    <div class="line__container">
+
+      <!-- ▼会話エリア scrollを外すと高さ固定解除 -->
+      <div id="chat" class="line__contents scroll">
+
+        {% for talk in talks %}
+            {% if talk.name == username %}
+              <div class="line__right">
+                <div class="text">{{talk.talk}}</div>
+                <span class="date">{{talk.time}}</span>
+              </div>
+            {% else %}
+              <div class="line__left">
+                <figure>
+                  <img src="{{talk.stamp}}" />
+                </figure>
+                <div class="line__left-text">
+                  <div class="name">{{talk.name}}</div>
+                  <div class="text">{{talk.talk}}</div>
+                  <span class="date">{{talk.time}}</span>
+                </div>
+              </div>
+            {% endif %}
+        {% endfor %}
+
+      </div>
+      <!--　▲会話エリア ここまで -->
+    </div>
+    <!--　▲LINE風ここまで -->
+    <form name="sendform" action="talk" method="post">
+    <div class="fluid-input" style="max-width: 500px;">
+      <input class="box" type="text" name="content">
+      <div class="button">
+        <button type="button" onclick="talk()">送信・更新</button>
+      </div>
+    </div>
+    </form>
+
+    <script>
+      var talk = function(){
+        document.sendform.submit();
+      };
+      var logout = function(button){
+        window.location.href = "/logout";
+      };
+      var obj = document.getElementById('chat');
+      obj.scrollTop = obj.scrollHeight;
+    </script>
+    </div>
+  </body>
+</html>

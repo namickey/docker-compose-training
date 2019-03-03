@@ -2,6 +2,8 @@
 import logging
 from flask import Flask, jsonify, request
 import json
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 app = Flask(__name__)
 

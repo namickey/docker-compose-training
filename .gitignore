@@ -6,3 +6,5 @@ app.log
 gcp/env/
 gcp/flask/lib/
 gcp/python-docs-samples/
+mapkey.json
+

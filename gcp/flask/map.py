@@ -14,6 +14,10 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name('mapkey.json', sc
 
 @app.route('/', methods=['GET'])
 def index():
+    return render_template('map_esri.html')
+
+@app.route('/map', methods=['GET'])
+def index():
     return render_template('map.html')
 
 @app.route('/getmap', methods=['GET'])

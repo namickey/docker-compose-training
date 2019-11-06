@@ -1,6 +1,6 @@
 Flask==0.12.4
 Werkzeug<0.13.0,>=0.12.0
-nltk==3.4
+nltk==3.4.5
 oauth2client==4.1.3
 gspread==3.1.0
 requests-toolbelt==0.9.1

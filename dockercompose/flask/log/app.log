@@ -1,5 +1,0 @@
-172.18.0.4 - - [03/Jan/2019 11:45:22] "GET / HTTP/1.0" 200 -
- * Detected change in '/code/app.py', reloading
-172.18.0.4 - - [03/Jan/2019 11:45:51] "POST /login HTTP/1.0" 302 -
-172.18.0.4 - - [03/Jan/2019 11:45:51] "GET / HTTP/1.0" 200 -
-172.18.0.4 - - [03/Jan/2019 11:45:56] "GET /logout HTTP/1.0" 200 -

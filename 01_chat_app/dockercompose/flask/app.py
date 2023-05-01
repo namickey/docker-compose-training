@@ -8,9 +8,9 @@ from firebase_admin import credentials
 from flask import Flask, session, render_template, request, redirect, url_for
 
 # firebase auth
-if not len(firebase_admin._apps):
-    cred = credentials.Certificate('./firebase/accountkey.json')
-    default_app = firebase_admin.initialize_app(cred)
+#if not len(firebase_admin._apps):
+#    cred = credentials.Certificate('./firebase/accountkey.json')
+#    default_app = firebase_admin.initialize_app(cred)
 # redis
 r = redis.Redis(host='redis', port=6379)
 

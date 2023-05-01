@@ -2,18 +2,20 @@ version: '3'
 services:
   web:
     build: .
-    expose:
-     - "5000"
+ #   expose:
+ #    - "5000"
+    ports:
+     - "5000:5000"
     volumes:
      - ./flask:/code
     command: "python -m flask run --host 0.0.0.0 --debugger --reload"
   redis:
     image: "redis:alpine"
-  ngin:
-    image: "nginx:1.13.5-alpine"
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-    links:
-      - web
+ # ngin:
+ #   image: "nginx:1.13.5-alpine"
+ #   ports:
+ #     - "80:80"
+ #   volumes:
+ #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+ #   links:
+ #     - web

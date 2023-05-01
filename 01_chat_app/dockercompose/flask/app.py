@@ -15,7 +15,7 @@ from flask import Flask, session, render_template, request, redirect, url_for
 r = redis.Redis(host='redis', port=6379)
 
 JST = timezone(timedelta(hours=+9), 'JST')
-talkname = 'listsabcdezy'
+talkname = 'list'
 
 # flask
 logger = logging.getLogger()

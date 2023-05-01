@@ -1,1 +1,1 @@
-docker-compose exec ngin sh
+docker compose exec ngin sh
